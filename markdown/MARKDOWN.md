@@ -49,15 +49,13 @@ Create a folder on your computer to create the git clone of the repository.
 
 ###  1.3. <a name='Gitclone'></a>Git clone
 
-- Login to your [GitLab](http://crslx34.progressrail.com/) account and go to the FIRE-QT-Convert repository and copy the HTTP clone link:
-
-![HTTP Clone](images/GitLabClone.PNG)
+- Login to your account and go to the FIRE-QT-Convert repository and copy the HTTP clone link:
 
 - Open the VSCode software and go to Source Control Panel:
 
 ![Source Control Panel](images/SourceControl.PNG)
 
-- Click on "Clone Repository", a Command Palette will open, paste the clone http link, "http://crslx34.progressrail.com/eneto/fire-qt-convert.git" for this project. And then choose the created folder to save the clone.
+- Click on "Clone Repository", a Command Palette will open, paste the clone http link,  for this project. And then choose the created folder to save the clone.
 
 ![Repository Clone HTTP URL](images/CloneHTTPRepository.PNG)
 
@@ -109,7 +107,7 @@ For further information about this extension, read the [repository documentation
 
 ##  2. <a name='Markdown'></a>Markdown
 
-The [Gitlab Markdown](http://crslx34.progressrail.com/help/user/markdown.md) documentation provides information about the Markdown syntax on Gitlab and what can be used on the platform.
+The [Gitlab Markdown]()documentation provides information about the Markdown syntax on Gitlab and what can be used on the platform.
 
 The [official VSCode documentation](https://code.visualstudio.com/docs/languages/markdown) for Markdown explains some native VSCode features, such as the ability to view Document Outline as a tree structure:
 
@@ -186,20 +184,16 @@ Example using backticks:
 Links can be either inline with the text, or placed at the bottom of the text as references. Example:
 
 ```md
-[Progress Rail Gitlab][1] contains all the information...
-...
-...
-
-[1]:http://crslx34.progressrail.com/
+jhjkk
 ```
 
 Link text is enclosed by square brackets [], and for inline links, the link URL is enclosed by parens (). Example:
 
-`[Link to Progress Rail Gitlab](http://crslx34.progressrail.com/)`
+`[Link to Github](http://github.com)`
 
 Links can also be enclosed by `<>`, example:
 
-`<http://crslx34.progressrail.com/>`
+`<http://github.com/>`
 ###  2.4. <a name='Images'></a>Images
 
 Images are almost identical to [links](#Links), but an image starts with an exclamation point `!`
