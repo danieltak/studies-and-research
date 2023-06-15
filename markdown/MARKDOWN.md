@@ -49,7 +49,7 @@ Create a folder on your computer to create the git clone of the repository.
 
 ###  1.3. <a name='Gitclone'></a>Git clone
 
-- Login to your account and go to the FIRE-QT-Convert repository and copy the HTTP clone link:
+- Login to your account and go to the repository and copy the HTTP clone link, e.g.: `https://github.com/danieltak/studies-and-research.git`
 
 - Open the VSCode software and go to Source Control Panel:
 
@@ -60,8 +60,6 @@ Create a folder on your computer to create the git clone of the repository.
 ![Repository Clone HTTP URL](images/CloneHTTPRepository.PNG)
 
 - Wait while the clone is being loaded.
-
-![Loading Clone](images/LoadingClone.PNG)
 
 - A Dialog will show, choose the "Open" clone option.
 
@@ -107,7 +105,7 @@ For further information about this extension, read the [repository documentation
 
 ##  2. <a name='Markdown'></a>Markdown
 
-The [Gitlab Markdown]()documentation provides information about the Markdown syntax on Gitlab and what can be used on the platform.
+The [Gitlab Markdown](https://about.gitlab.com/handbook/markdown-guide/) documentation provides information about the Markdown syntax on Gitlab and what can be used on the platform.
 
 The [official VSCode documentation](https://code.visualstudio.com/docs/languages/markdown) for Markdown explains some native VSCode features, such as the ability to view Document Outline as a tree structure:
 
