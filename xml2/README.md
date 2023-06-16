@@ -27,12 +27,20 @@ The repository:
 Read-only mirror:
 - https://gitlab.gnome.org/GNOME/libxml2
 
-## SAX vs DOM
+## SAX vs DOM vs pull parser
+
+
+https://stackoverflow.com/questions/5808105/sax-parser-vs-xmlpull-parser
+
+>TL;DR; Use a DOM or pull parser with smaller files that fit in RAM. Use a SAX parser for large files that won't. 
+>
+>It totally depends on the situation for e.g If the xml file is really large than you can't opt for DOM parsers as they will first bring the file in to memory and then it will be parsed and i found that parsing a file of size n requires 7n memory space. In this case you should opt for SAX parser its light and will consume less memory.
+>
+>Second case is when the file is not really large, in this case you can go for XML pull parser because in this you will have full control on the xml you can skip the parsing cycle any where that is not possible in SAX. So if the tag you are looking for is the first one in the file then why would you go for whole file.
+>
+>So as far as i know if you consider only speed with small file go with XML pull parser and If the file is large and you want to parse it all then go with SAX.
 
 https://stackoverflow.com/questions/6828703/what-is-the-difference-between-sax-and-dom
-
->TL;DR; Use a DOM parser with smaller files that fit in RAM. Use a SAX parser for large files that won't
->
 > In SAX, events are triggered when the XML is being parsed. When the parser is parsing the XML, and encounters a tag starting (e.g. `<something>`), then it triggers the tagStarted event (actual name of event might differ). Similarly when the end of the tag is met while parsing (`</something>`), it triggers tagEnded. Using a SAX parser implies you need to handle these events and make sense of the data returned with each event.
 > 
 >In DOM, there are no events triggered while parsing. The entire XML is parsed and a DOM tree (of the nodes in the XML) is generated and returned. Once parsed, the user can navigate the tree to access the various data previously embedded in the various nodes in the XML.
@@ -63,6 +71,20 @@ https://stackoverflow.com/questions/6828703/what-is-the-difference-between-sax-a
 - Use SAX parser when memory content is large.
 - SAX reads the XML file from top to bottom and backward navigation is not possible.
 - Faster at run time.
+
+https://stackoverflow.com/questions/11297273/difference-among-xml-sax-parser-pull-parser-dom-parser-in-android
+
+>Dom Parser - It uses object based approach. i.e., it first loads the entire XML in memory, converts the XML nodes into objects and then starts parsing them. So, it is pretty slower.
+>
+>SAX and PULL Parser - they use event based approach. Both are almost same in terms of memory and performance. However there are few distinguishing situations on when to use them as described below.
+>
+>Dom Parser - Use it when you need to validate the entire XML before parsing. Never use it when the XML is too large and validation can be compromised. Once it starts parsing, it parses from starting node to ending node. there is no way to parse only particular nodes.
+>
+>SAX - Use it when you want to parse the entire XML. Once it starts parsing, it parses from starting node to ending node. there is no way to parse only particular nodes.
+>
+>PULL - Use it when you don't want to parse the entire XML. It is easier to implement than SAX, because you don't have to maintain the state of your parser. You can pull only a particular node you are interested at.
+>
+>My suggestion is - Need validation - Go for DOM, File size is small or you are not interested in parsing of entire XML- Go for PULL, File size is large or you need to parse the entire XML file - Go for SAX.
 ##  2. <a name='FreexmlObjects'></a>Free xml Objects
 
 Don't forget to free the xml buffer and doc, mainly when the object is a class member.
