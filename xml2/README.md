@@ -87,7 +87,16 @@ https://stackoverflow.com/questions/11297273/difference-among-xml-sax-parser-pul
 >My suggestion is - Need validation - Go for DOM, File size is small or you are not interested in parsing of entire XML- Go for PULL, File size is large or you need to parse the entire XML file - Go for SAX.
 ##  2. <a name='FreexmlObjects'></a>Free xml Objects
 
-Don't forget to free the xml buffer and doc, mainly when the object is a class member.
+Don't forget to free the xml objects buffer and doc, mainly when the object is a class member.
+
+Use the functions providaded by the library, such as:
+- xmlFreeDoc
+- xmlFreeParserCtxt
+- xmlXPathFreeObject 
+- xmlXPathFreeContext 
+- xmlFreeTextReader 
+- xmlFreeTextWriter 
+- xmlBufferFree 
 
 ##  3. <a name='xmlParservsxmlReader'></a>xmlParser vs xmlReader
 
