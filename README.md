@@ -84,9 +84,12 @@ We learn new knowledge on a daily basis and we often have to get back to problem
 <!-- USAGE EXAMPLES -->
 ## Summary
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+The following subjects can be found on the notes of this project:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+- [XML2](https://github.com/danieltak/studies-and-research/tree/master/xml2)
+- [Markdown](https://github.com/danieltak/studies-and-research/tree/master/markdown)
+
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -140,7 +143,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Daniel Watanabe - [@danieltakeshi](https://stackoverflow.com/users/7690982/danieltakeshi)
 
-Project Link: [https://github.com/danieltak/studies-and-research](https://github.com/danieltak/studies-and-research)
+Danieltak Page: [https://danieltak.github.io/](https://danieltak.github.io/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
