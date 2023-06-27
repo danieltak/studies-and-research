@@ -12,6 +12,7 @@
 * 9. [Write to Memory](#WritetoMemory)
 * 10. [Read SVG](#ReadSVG)
 * 11. [Get the Attribute](#GettheAttribute)
+* 12. [Check file changed](#Checkfilechanged)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -335,3 +336,9 @@ Using the following code:
 xmlAttrPtr attribute = svgValues->properties;
 xmlChar* content = (char*) xmlNodeListGetString(svgValues->doc, attribute->children, 0);
 ```
+##  12. <a name='Checkfilechanged'></a>Check file changed
+
+https://stackoverflow.com/q/14697805/7690982
+https://stackoverflow.com/a/1563382/7690982
+
+Use hash functions.
