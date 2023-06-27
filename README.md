@@ -93,8 +93,6 @@ The following subjects can be found on the notes of this project:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Summary
-
 <!-- ROADMAP -->
 ## Roadmap
 
