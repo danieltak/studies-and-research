@@ -88,8 +88,10 @@ The following subjects can be found on the notes of this project:
 
 - [XML2](https://github.com/danieltak/studies-and-research/tree/master/xml2)
 - [Markdown](https://github.com/danieltak/studies-and-research/tree/master/markdown)
-
-
+- [Conventional Commits](https://github.com/danieltak/studies-and-research/tree/master/Conventional%20Commits)
+- [Linux POSIX](https://github.com/danieltak/studies-and-research/tree/master/Linux%20POSIX)
+- [Powershell](https://github.com/danieltak/studies-and-research/tree/master/Powershell)
+- [Threads](https://github.com/danieltak/studies-and-research/tree/master/threads)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
