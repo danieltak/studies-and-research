@@ -1,9 +1,13 @@
+# Linux POSIX
+
 <!-- vscode-markdown-toc -->
 * 1. [Misc Commands](#MiscCommands)
 	* 1.1. [Valgrind](#Valgrind)
+	* 1.2. [top](#top)
 * 2. [Use ip instead of ifconfig](#Useipinsteadofifconfig)
 * 3. [Netlink](#Netlink)
 * 4. [LTTng](#LTTng)
+* 5. [Default Permission](#DefaultPermission)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -16,6 +20,8 @@
 
 ###  1.1. <a name='Valgrind'></a>Valgrind
 
+https://valgrind.org/docs/manual/quick-start.html
+
 ```
 valgrind --leak-check=full \
          --show-leak-kinds=definite \
@@ -24,6 +30,13 @@ valgrind --leak-check=full \
          --log-file=/home/root/valgrind-date.txt \
          /path/to/executable "args"
 ```
+
+###  1.2. <a name='top'></a>top
+
+First use `ps aux` to list every process running and get the target process id (PID), then run `top -H -p pid_number` to watch the running threads or for the child processes `pgrep -lP pid_number`
+
+
+
 ##  2. <a name='Useipinsteadofifconfig'></a>Use ip instead of ifconfig
 
 On an answer from 2012 on the [Sever Fault website](https://serverfault.com/questions/458628/should-i-quit-using-ifconfig):
@@ -63,4 +76,10 @@ https://imasters.com.br/devsecops/introducao-a-ferramenta-lttng-monitorando-even
 https://man7.org/linux/man-pages/man1/lttng.1.html
 
 https://lttng.org/
+
+##  5. <a name='DefaultPermission'></a>Default Permission
+
+The default file permissions can be set using Access Control List (ACL), that provides an additional, more flexible permission mechanism for [file systems](https://wiki.archlinux.org/title/File_systems). It is designed to assist with UNIX file permissions. ACL allows you to give permissions for any user or group to any disk resource.
+
+The `chmod` and `chown` commands are used to change the permissions of the target files and folders only once, [setfacl](https://linux.die.net/man/1/setfacl) command needs to be used to set the permissions rules on an advanced way.
 
