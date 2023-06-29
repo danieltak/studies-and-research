@@ -3,6 +3,7 @@
 * 1. [Introduction](#Introduction)
 * 2. [Transfer file SCP](#TransferfileSCP)
 * 3. [Compress and copy](#Compressandcopy)
+* 4. [Windows PowerShell ISE](#WindowsPowerShellISE)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -74,3 +75,11 @@ Read-Host -Prompt "Press Enter to exit"
 For backup purposes, sometimes it is necessary to compress files and then copy to a server location. This was previously done with Robocopy and some third party compressing software. However, with powershell it can be done without third party.
 
 Some tutorials will recommend `Robocopy`, don't use this deprecated feature.
+
+##  4. <a name='WindowsPowerShellISE'></a>Windows PowerShell ISE
+
+Modern Windows distributions have the PowerShell ISE to code scripts with the `ps1` extension.
+
+To open it, right click the `ps1` file and click on edit, the software will execute:
+
+![ISE](images/ISE.png)
