@@ -1,4 +1,13 @@
-## Introduction
+<!-- vscode-markdown-toc -->
+* 1. [Introduction](#Introduction)
+* 2. [Transfer file SCP](#TransferfileSCP)
+* 3. [Compress and copy](#Compressandcopy)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->##  1. <a name='Introduction'></a>Introduction
 
 [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.3) is cross-platform, but it will be used mainly on Windows SO, the following is a description from the official documentation:
 
@@ -10,7 +19,7 @@
 
 The scripting can be used with scheduling, mainly on Windows Server for maintenance purposes or for daily tasks that repeatedly occur.
 
-## Transfer file SCP
+##  2. <a name='TransferfileSCP'></a>Transfer file SCP
 
 The file `transferSCP.ps1` contains the following code for file transfer over SCP:
 
@@ -58,3 +67,8 @@ if( (Test-NetConnection -ComputerName $targetIP -port 22).TcpTestSucceeded )
 Read-Host -Prompt "Press Enter to exit"
 ```
 
+##  3. <a name='Compressandcopy'></a>Compress and copy
+
+For backup purposes, sometimes it is necessary to compress files and then copy to a server location. This was previously done with Robocopy and some third party compressing software. However, with powershell it can be done without third party.
+
+Some tutorials will recommend `Robocopy`, don't use this deprecated feature.
