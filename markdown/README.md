@@ -33,7 +33,7 @@
 #  <a name='Tutorial'></a>Tutorial
 
 
-This [Tutorial](MARKDOWN.md) document is used to guide the user on how to use VSCode for Windows to write a MarkDown on Github.
+This Tutorial document is used to guide the user on how to use VSCode for Windows to write a MarkDown on Github.
 
 An example of how to create a MarkDown document can be found on the [LuisCarlosRojasTorres' github repository](https://github.com/LuisCarlosRojasTorres/Books/blob/main/ComputerScience/UncleBob/CleanArchitecture/Sec04-Components.md)
 
