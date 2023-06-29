@@ -1,3 +1,5 @@
+# Conventional Commits
+
 https://www.conventionalcommits.org/en/v1.0.0/
 
 https://blog.rocketseat.com.br/como-fazer-um-commit-conventional-commits/
