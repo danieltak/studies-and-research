@@ -63,9 +63,19 @@ On the [Kernel website](https://docs.kernel.org/userspace-api/netlink/intro.html
 >
 >Unfortunately the protocol has evolved over the years, in an organic and undocumented fashion, making it hard to coherently explain. To make the most practical sense this document starts by describing netlink as it is used today and dives into more "historical" uses in later sections.
 
+An example can be found on the [ucon.c](ucon.c) file.
+
+https://github.com/mwarning/netlink-examples
+
+https://www.kernel.org/doc/Documentation/connector/connector.txt
+
 https://docs.kernel.org/userspace-api/netlink/index.html
 
 https://man7.org/linux/man-pages/man7/netlink.7.html
+
+https://stackoverflow.com/q/3299386/7690982
+
+https://natanyellin.com/posts/buggy-netlink-process-connectors/
 
 One example of use is a connector of `proc_event`, filename `cn_proc.h`.
 
