@@ -50,3 +50,14 @@ backend, that is, what kind of access is required to run weston, but
 if there's a graphics device that you need to be root to open, we
 should do that in weston-launch, similar to how we handle the
 limitations of linux drm and input devices.
+
+ Although it is not recommended, you can change the file at `/etc/init.d/weston` and change the user var from weston to root.
+
+## Qt Projects
+
+- https://github.com/gamecreature/QtAwesome
+- https://github.com/zhuzichu520/FluentUI
+- https://github.com/Swordfish90/cool-retro-term
+- https://github.com/lirios/fluid
+- https://github.com/jaredtao/TaoQuick
+- 
