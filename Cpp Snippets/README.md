@@ -3,6 +3,7 @@
 <!-- vscode-markdown-toc -->
 * 1. [Introduction](#Introduction)
 * 2. [Time ellapsed](#Timeellapsed)
+* 3. [Minimize and Maximize X11 Window](#MinimizeandMaximizeX11Window)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -57,3 +58,59 @@ m_testTimer = std::chrono::steady_clock::now();
 ```
 
 A class can be creating for taking snapshots of now and return the elapsed time.
+
+##  3. <a name='MinimizeandMaximizeX11Window'></a>Minimize and Maximize X11 Window
+
+Sometimes Qt default functions won't handle properly the Window, so X11 libraries are needed to handle.
+
+To add to the project, the following CMakeLists configuration:
+
+```Cmake
+find_package(X11 REQUIRED)
+
+include_directories(${X11_INCLUDE_DIR})
+link_libraries(${X11_LIBRARIES})
+```
+
+Includes:
+
+```cpp
+#include <X11/Xlib.h>
+```
+
+Use `XIconifyWindow()` to minimize the window, on Qt6 the following code:
+
+```cpp
+// If there is only one Window
+MainWindow * win = (MainWindow *) qApp::activeWindow();
+Display *display = nullptr;
+xcb_connection_t *connection = nullptr;
+bool bIsPlatformX11 = false;
+if (auto *x11Application = qGuiApp->nativeInterface<QNativeInterface::QX11Application>())
+{
+    display = x11Application->display();
+    connection = x11Application->connection();
+    bIsPlatformX11 = true;
+}
+XIconifyWindow( display, win->winId(), 0);
+```
+
+To maximize:
+
+```cpp
+// If there is only one Window
+MainWindow * win = (MainWindow *) qApp::activeWindow();
+Display *display = nullptr;
+xcb_connection_t *connection = nullptr;
+bool bIsPlatformX11 = false;
+if (auto *x11Application = qGuiApp->nativeInterface<QNativeInterface::QX11Application>())
+{
+    display = x11Application->display();
+    connection = x11Application->connection();
+    bIsPlatformX11 = true;
+}
+// Show
+XMapWindow( display, win->winId() );
+// Hide
+// XUnMapWindow( display, win->winId() );
+```
