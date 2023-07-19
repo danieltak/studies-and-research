@@ -3,6 +3,9 @@
 * 1. [General Issues](#GeneralIssues)
 	* 1.1. [Locale](#Locale)
 	* 1.2. [Weston non-root permission](#Westonnon-rootpermission)
+* 2. [Porting from X11 to Wayland](#PortingfromX11toWayland)
+	* 2.1. [Problem](#Problem)
+* 3. [Qt Projects](#QtProjects)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -53,11 +56,40 @@ limitations of linux drm and input devices.
 
  Although it is not recommended, you can change the file at `/etc/init.d/weston` and change the user var from weston to root.
 
-## Qt Projects
+##  2. <a name='PortingfromX11toWayland'></a>Porting from X11 to Waylandd
+
+ **TL;DR;**
+
+It is not a plug & play migration, since Wayland is different from X11 and [QT Wayland Compositor](https://doc.qt.io/qt-6/qtwaylandcompositor-index.html) must be implemented.
+###  2.1. <a name='Problem'></a>Problemm
+
+ As stated on [Open Desktop archives](https://wayland-devel.freedesktop.narkive.com/6XzmsY3c/random-window-position-with-desktop-shell), wayland uses non-deterministic positioning logic on the client shell. So the window will open on random positioning every time it is created and the client doesn’t control this positioning.
+
+ So new QObjects without parent or QDialogs are created on random positioning. So QDialogs should be avoided.
+
+ A question from [Qt forum (2023)](https://forum.qt.io/topic/142827/what-can-i-do-for-my-qtwidget-program-s-window-correctly-positioned-on-the-screen) and from [Free Desktop mailing list (2014)](https://lists.freedesktop.org/archives/wayland-devel/2014-August/016472.html) states that Qt Wayland Compositor needs an implementation to achieve this positioning control.
+
+Links:
+
+https://doc.qt.io/qt-6/wayland-and-qt.html
+
+https://archive.fosdem.org/2014/schedule/event/porting_legacy_x11_to_wayland/
+
+https://doc.qt.io/qt-6/qtwaylandcompositor-examples.html
+
+https://community.kde.org/Guidelines_and_HOWTOs/Wayland_Porting_Notes
+
+https://github.com/qt/qtwayland
+
+
+
+##  3. <a name='QtProjects'></a>Qt Projects
 
 - https://github.com/gamecreature/QtAwesome
 - https://github.com/zhuzichu520/FluentUI
 - https://github.com/Swordfish90/cool-retro-term
 - https://github.com/lirios/fluid
 - https://github.com/jaredtao/TaoQuick
-- 
+- https://github.com/e-fever/e-fever-codebase
+- https://apps.kde.org/pt-br/kapptemplate/
+- https://github.com/madduci/moderncpp-project-template/tree/master
