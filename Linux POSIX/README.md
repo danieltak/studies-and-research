@@ -9,6 +9,7 @@
 * 4. [LTTng](#LTTng)
 * 5. [Default Permission](#DefaultPermission)
 * 6. [Filesystem Hierarchy Standard (FHS)](#FilesystemHierarchyStandardFHS)
+* 7. [Time](#Time)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -150,3 +151,44 @@ For a brief explanation of the FHS, see the [wikipedia](https://en.wikipedia.org
 | /var/spool      | Spool for tasks waiting to be processed (e.g., print queues and outgoing mail queue).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | /var/spool/mail | Deprecated location for users' mailboxes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | /var/tmp        | Temporary files to be preserved between reboots.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+
+##  7. <a name='Time'></a>Time
+
+The "time.h" library works and updates the system time, which you can verify using the `date` command on the linux terminal.
+
+To get the time using the time.h library, use the `gettimeofday` function and NULL for the time zone.
+
+```cpp
+#include <sys/time.h>
+
+struct timeval tTime;
+gettimeofday( &tTime, NULL);
+std::cout << tTime.tv_sec << std::endl;
+std::cout << tTime.tv_usec << std::endl;
+```
+
+To set the time using the time.h library, use the `settimeofday` function and NULL argument for the time zone.
+
+```cpp
+#include <sys/time.h>
+
+struct timeval tnewTime;
+int iReturn;
+
+tnewTime.tv_sec = 1691067482; // The time in seconds is calculated from some class created, here we are assuming a constant time value.
+tnewTime.tv_usec = 0;
+
+iReturn = settimeofday( & tnewTime , NULL );
+
+if ( iReturn == 0 )
+{
+    system("hwclock --systohc");
+}
+```
+
+To update the rtc time on the hardware use the `hwclock -w` or `hwclock --systohc`. So the application works on the user space and updates the system time and later a synchronization is required to update the hardware clock.
+
+To verify the rtc time on the hardware use the `hwclock` command.
+
+If you want to change the hardware clock and update the system time use the command `hwclock -s` or `hwclock --hctosys`.
+
