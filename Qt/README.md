@@ -3,9 +3,10 @@
 * 1. [General Issues](#GeneralIssues)
 	* 1.1. [Locale](#Locale)
 	* 1.2. [Weston non-root permission](#Westonnon-rootpermission)
-* 2. [Porting from X11 to Wayland](#PortingfromX11toWayland)
-	* 2.1. [Problem](#Problem)
+* 2. [Porting from X11 to Waylandd](#PortingfromX11toWaylandd)
+	* 2.1. [Problemm](#Problemm)
 * 3. [Qt Projects](#QtProjects)
+* 4. [QML](#QML)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -56,12 +57,12 @@ limitations of linux drm and input devices.
 
  Although it is not recommended, you can change the file at `/etc/init.d/weston` and change the user var from weston to root.
 
-##  2. <a name='PortingfromX11toWayland'></a>Porting from X11 to Waylandd
+##  2. <a name='PortingfromX11toWaylandd'></a>Porting from X11 to Waylandd
 
  **TL;DR;**
 
 It is not a plug & play migration, since Wayland is different from X11 and [QT Wayland Compositor](https://doc.qt.io/qt-6/qtwaylandcompositor-index.html) must be implemented.
-###  2.1. <a name='Problem'></a>Problemm
+###  2.1. <a name='Problemm'></a>Problemm
 
  As stated on [Open Desktop archives](https://wayland-devel.freedesktop.narkive.com/6XzmsY3c/random-window-position-with-desktop-shell), wayland uses non-deterministic positioning logic on the client shell. So the window will open on random positioning every time it is created and the client doesn’t control this positioning.
 
@@ -81,6 +82,8 @@ https://community.kde.org/Guidelines_and_HOWTOs/Wayland_Porting_Notes
 
 https://github.com/qt/qtwayland
 
+https://github.com/Distrotech/qtwayland/tree/master/examples/qwindow-compositor
+
 
 
 ##  3. <a name='QtProjects'></a>Qt Projects
@@ -93,3 +96,9 @@ https://github.com/qt/qtwayland
 - https://github.com/e-fever/e-fever-codebase
 - https://apps.kde.org/pt-br/kapptemplate/
 - https://github.com/madduci/moderncpp-project-template/tree/master
+
+##  4. <a name='QML'></a>QML
+
+https://develop.kde.org/docs/plasma/widget/plasma-qml-api/
+
+https://community.kde.org/Plasma/DeveloperGuide

@@ -1,4 +1,8 @@
 # Threads
+https://www.geeksforgeeks.org/difference-between-thread-id-and-thread-handle/?ref=gcse#
+
+https://www.geeksforgeeks.org/concurrency-control-techniques/
+
 
 ## Synchronization
 
