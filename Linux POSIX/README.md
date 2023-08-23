@@ -10,6 +10,7 @@
 * 5. [Default Permission](#DefaultPermission)
 * 6. [Filesystem Hierarchy Standard (FHS)](#FilesystemHierarchyStandardFHS)
 * 7. [Time](#Time)
+* 8. [Send Signal](#SendSignal)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -192,3 +193,127 @@ To verify the rtc time on the hardware use the `hwclock` command.
 
 If you want to change the hardware clock and update the system time use the command `hwclock -s` or `hwclock --hctosys`.
 
+##  8. <a name='SendSignal'></a>Send Signal
+
+If you want to send a signal to a thread, you can use `pthread_kill()`, although it is not semantically correct, the man page states:
+
+> The pthread_kill() function sends the signal sig to thread, a
+       thread in the same process as the caller.  The signal is
+       asynchronously directed to thread.
+>
+> If sig is 0, then no signal is sent, but error checking is still
+       performed.
+
+A code to get the signal of a thread and verify if the thread is "alive":
+
+```cpp	
+pthread_t m_iThreadID = your_thread_id_here;
+int	iStatus  = pthread_kill( m_iThreadID, 0 );
+if( iStatus != 0 )  
+{
+    // Thread Stopped!
+    std::cout << "pthread_kill Error: " << errno << std::endl;
+}
+```
+
+However, it is semantically strange to use a kill function to retrieve a signal and not kill the thread, right?
+
+Althought it sound strange, pthread_kill() is widely used and has many tutorials and examples.
+
+If you want to use other function or to send parameters, `pthread_sigqueue()` can be used. From man page:
+
+> The pthread_sigqueue() function performs a similar task to
+       sigqueue(3), but, rather than sending a signal to a process, it
+       sends a signal to a thread in the same process as the calling
+       thread.
+>
+> The thread argument is the ID of a thread in the same process as
+       the caller.  The sig argument specifies the signal to be sent.
+       The value argument specifies data to accompany the signal; see
+       sigqueue(3) for details.
+
+The optional argument on man page:
+
+> The value argument is used to specify an accompanying item of
+       data (either an integer or a pointer value) to be sent with the
+       signal, and has the following type:
+>
+>           union sigval {
+>               int   sival_int;
+>               void *sival_ptr;
+>           };
+
+An example with a null signal value:
+
+```cpp	
+pthread_t m_iThreadID = your_thread_id_here;
+sigval_t siValue;
+
+int	iStatus  = pthread_sigqueue( m_iThreadID, 0, siValue );
+if( iStatus != 0 )  
+{
+    // Thread Stopped!
+    std::cout << "pthread_sigqueue Error: " << errno << std::endl;
+}
+```
+
+The same can be applied to processes!
+
+The `kill()` function can be used to get the status of a function, from man page:
+
+>The kill() system call can be used to send any signal to any
+>process group or process.
+>
+>If pid is positive, then signal sig is sent to the process with
+>the ID specified by pid.
+>
+>If pid equals 0, then sig is sent to every process in the process
+>group of the calling process.
+>
+>If pid equals -1, then sig is sent to every process for which the
+>calling process has permission to send signals, except for
+>process 1 (init), but see below.
+>
+>If pid is less than -1, then sig is sent to every process in the
+>process group whose ID is -pid.
+>
+>If sig is 0, then no signal is sent, but existence and permission
+checks are still performed; this can be used to check for the
+existence of a process ID or process group ID that the caller is
+permitted to signal.
+>
+>For a process to have permission to send a signal, it must either
+be privileged (under Linux: have the CAP_KILL capability in the
+user namespace of the target process), or the real or effective
+user ID of the sending process must equal the real or saved set-
+user-ID of the target process.  In the case of SIGCONT, it
+suffices when the sending and receiving processes belong to the
+same session.  (Historically, the rules were different; see
+NOTES.)
+
+An example:
+
+```cpp	
+pid_t m_iProcID = your_proc_id_here;
+
+int	iStatus  = kill( m_iProcID, 0 );
+if( iStatus != 0 )  
+{
+    // Process Stopped!
+    std::cout << "kill Error: " << errno << std::endl;
+}
+```
+
+Or to use `sigqueue()`:
+
+```cpp	
+pid_t m_iProcID = your_proc_id_here;
+sigval_t siValue;
+
+int	iStatus  = sigqueue( m_iProcID, 0, siValue );
+if( iStatus != 0 )  
+{
+    // Process Stopped!
+    std::cout << "sigqueue Error: " << errno << std::endl;
+}
+```
