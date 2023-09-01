@@ -3,6 +3,13 @@ https://www.geeksforgeeks.org/difference-between-thread-id-and-thread-handle/?re
 
 https://www.geeksforgeeks.org/concurrency-control-techniques/
 
+https://gist.github.com/convict-git/9e4da852bb034f4aa97b66596f2270f5
+
+https://gitlab.com/Lipovsky/awesome-concurrency
+
+https://www.geeksforgeeks.org/difference-between-cache-coherence-and-memory-consistency/
+
+https://github.com/google/sanitizers
 
 ## Synchronization
 
