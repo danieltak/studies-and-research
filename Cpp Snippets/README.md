@@ -114,3 +114,128 @@ XMapWindow( display, win->winId() );
 // Hide
 // XUnMapWindow( display, win->winId() );
 ```
+
+## Convert Hex String to Unsigned Int and then convert to ASCII String
+
+First a struct of characters of an ASCII table is created and then an array of structs is created for the Special Characters (first 31 items from ASCII table).
+
+A function that converts Hex string to a BYTE (unsigned int) vector using `strtol` STL function was used from the following answer: https://stackoverflow.com/questions/17261798/converting-a-hex-string-to-a-byte-array
+
+Later it recreates the string by replacing special characters with special character symbol between brackets.
+
+```cpp
+#include <iostream>
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Special Characters ASCII
+typedef struct
+{
+    unsigned int   iDec;
+    unsigned int   iOct;
+    std::string         strHex;
+    std::string         strChar;
+} SpecialCharsItemStruct;
+
+const SpecialCharsItemStruct SpecialCharsItems[] =
+    {
+        // iDec,          iOct,           strHex,       strChar
+        {  0,               0,              "00",        "[NUL]" },
+        {  1,               1,              "01",        "[SOH]" },
+        {  2,               2,              "02",        "[STX]" },
+        {  3,               3,              "03",        "[ETX]" },
+        {  4,               4,              "04",        "[EOT]" },
+        {  5,               5,              "05",        "[ENQ]" },
+        {  6,               6,              "06",        "[ACK]" },
+        {  7,               7,              "07",        "[BEL]" },
+        {  8,              10,              "08",        "[BS]" },
+        {  9,              11,              "09",        "[TAB]" },
+        { 10,              12,              "0A",        "[LF]" },
+        { 11,              13,              "0B",        "[VT]" },
+        { 12,              14,              "0C",        "[FF]" },
+        { 13,              15,              "0D",        "[CR]" },
+        { 14,              16,              "0E",        "[SO]" },
+        { 15,              17,              "0F",        "[SI]" },
+        { 16,              20,              "10",        "[DLE]" },
+        { 17,              21,              "11",        "[DC1]" },
+        { 18,              22,              "12",        "[DC2]" },
+        { 19,              23,              "13",        "[DC3]" },
+        { 20,              24,              "14",        "[DC4]" },
+        { 21,              25,              "15",        "[NAK]" },
+        { 22,              26,              "16",        "[SYN]" },
+        { 23,              27,              "17",        "[ETB]" },
+        { 24,              30,              "18",        "[CAN]" },
+        { 25,              31,              "19",        "[EM]" },
+        { 26,              32,              "1A",        "[SUB]" },
+        { 27,              33,              "1B",        "[ESC]" },
+        { 28,              34,              "1C",        "[FS]" },
+        { 29,              35,              "1D",        "[GS]" },
+        { 30,              36,              "1E",        "[RS]" },
+        { 31,              37,              "1F",        "[US]" }
+    };
+
+std::vector<unsigned int> HexToBytes(const std::string& hex) {
+  std::vector<unsigned int> bytes;
+
+  for (unsigned int i = 0; i < hex.length(); i += 2) {
+    std::string byteString = hex.substr(i, 2);
+    unsigned int byte = (unsigned int) strtol(byteString.c_str(), NULL, 16);
+    bytes.push_back(byte);
+  }
+
+  return bytes;
+}
+
+int main()
+{
+    std::string strHex = "0148656C6C6F20576F726C0064";
+    std::string strText = "";
+    std::vector<unsigned int> vRet = HexToBytes( strHex );
+    cout << "Numbers: " << endl;
+    for( auto i : vRet)
+    {
+        std::string strCharacterToAppend;
+        
+        cout << i << endl;
+        
+        if (i >= 0 && i < 32 )
+        {
+            strCharacterToAppend = SpecialCharsItems[ i ].strChar;
+            //cout << SpecialCharsItems[ i ].strChar << endl;
+        }
+        else
+        {
+            strCharacterToAppend = i;
+        }
+        strText.append( strCharacterToAppend );
+    }
+    
+    
+    cout << "String: " << strText << endl;
+    return 0;
+}
+
+```
+
+The output of this example is:
+
+```
+Numbers: 
+1
+72
+101
+108
+108
+111
+32
+87
+111
+114
+108
+0
+100
+String: [SOH]Hello Worl[NUL]d
+```
