@@ -89,7 +89,9 @@ https://github.com/Distrotech/qtwayland/tree/master/examples/qwindow-compositor
 
 The automatic word wrapping from Qt using some flags didn't work properly on `QTableWidget` class.
 
-The solution was to create a `QStyledItemDelegate` and to overload the sizeHint function by calculating the font size and width of each column.
+The solution was to create a `QStyledItemDelegate` and to overload the sizeHint function by calculating the size by using the font size and width of each column.
+
+A for loop is used to slice the string and to check the width of the sliced string using the current font, if it is larger than the width of the column it will slice at the last space position.
 
 ```cpp
 QSize CFireListBoxDelegate::sizeHint(const QStyleOptionViewItem &option,
