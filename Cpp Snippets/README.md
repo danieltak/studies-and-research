@@ -4,6 +4,7 @@
 * 1. [Introduction](#Introduction)
 * 2. [Time ellapsed](#Timeellapsed)
 * 3. [Minimize and Maximize X11 Window](#MinimizeandMaximizeX11Window)
+* 4. [Convert Hex String to Unsigned Int and then convert to ASCII String](#ConvertHexStringtoUnsignedIntandthenconverttoASCIIString)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -115,7 +116,7 @@ XMapWindow( display, win->winId() );
 // XUnMapWindow( display, win->winId() );
 ```
 
-## Convert Hex String to Unsigned Int and then convert to ASCII String
+##  4. <a name='ConvertHexStringtoUnsignedIntandthenconverttoASCIIString'></a>Convert Hex String to Unsigned Int and then convert to ASCII String
 
 First a struct of characters of an ASCII table is created and then an array of structs is created for the Special Characters (first 31 items from ASCII table).
 

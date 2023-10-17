@@ -5,8 +5,9 @@
 	* 1.2. [Weston non-root permission](#Westonnon-rootpermission)
 * 2. [Porting from X11 to Waylandd](#PortingfromX11toWaylandd)
 	* 2.1. [Problemm](#Problemm)
-* 3. [Qt Projects](#QtProjects)
-* 4. [QML](#QML)
+* 3. [Word Wrapping](#WordWrapping)
+* 4. [Qt Projects](#QtProjects)
+* 5. [QML](#QML)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -84,9 +85,93 @@ https://github.com/qt/qtwayland
 
 https://github.com/Distrotech/qtwayland/tree/master/examples/qwindow-compositor
 
+##  3. <a name='WordWrapping'></a>Word Wrapping
 
+The automatic word wrapping from Qt using some flags didn't work properly on `QTableWidget` class.
 
-##  3. <a name='QtProjects'></a>Qt Projects
+The solution was to create a `QStyledItemDelegate` and to overload the sizeHint function by calculating the font size and width of each column.
+
+```cpp
+QSize CFireListBoxDelegate::sizeHint(const QStyleOptionViewItem &option,
+                                     const QModelIndex &index) const
+{
+    int height = 0;
+    int width = 0;
+
+    if (true == index.isValid())
+    {
+        QString currentText = index.data().toString();
+        QTableWidget* parent = static_cast<QTableWidget*> (this->parent());
+
+        if (nullptr !=  parent)
+        {
+            QFontMetrics metrics(parent->font());
+            int fontHeight = static_cast<Rhp_int32_t>(
+                qCeil( (static_cast<Rhp_float32_t>((parent->font().pointSizeF()) / 0.7)) ));
+
+            if (true == currentText.isEmpty())
+            {
+                currentText = "H";
+            }
+
+            QSize textSize =  metrics.size(Qt::TextSingleLine, currentText);
+
+            int textHeight = textSize.height();
+            int textWidth  = textSize.width();
+            width = parent->columnWidth(index.column());
+
+            if  (true == parent->wordWrap()
+                && ( width <= textWidth ) )
+            {
+                QString qStrSliced;
+                int iStartPos = 0;
+                int iLineCount = 1;
+
+                for( int iChar = 0; iChar <= currentText.size(); iChar++ )
+                {
+                    qStrSliced = currentText.sliced( iStartPos, iChar - iStartPos );
+                    int iSlicedWidth = metrics.size( Qt::TextSingleLine, qStrSliced ).width();
+                    if( iSlicedWidth >= width )
+                    {
+                        int iLastSpacePos = iStartPos + qStrSliced.lastIndexOf( QChar::Space, -1 );
+                        if ( iLastSpacePos > -1 )
+                        {
+                            iStartPos = iLastSpacePos;
+                            iChar = iLastSpacePos;
+                        }
+                        else
+                        {
+                            iStartPos = iChar;
+                        }
+                        iLineCount++;
+                    }
+                    else if( true == qStrSliced.contains( QChar::LineFeed ) )
+                    {
+                        iLineCount++;
+                        iStartPos = iChar;
+                    }
+                    else
+                    {
+                        //
+                    }
+                }
+
+                height =  iLineCount * textHeight;
+            }
+            else
+            {
+                height = ( (currentText.count("\n") + 1) * fontHeight) + 2;
+            }
+
+            height +=  m_iRowSpacing;
+        }
+    }
+
+    return QSize(width, height);
+}
+```
+
+##  4. <a name='QtProjects'></a>Qt Projects
 
 - https://github.com/gamecreature/QtAwesome
 - https://github.com/zhuzichu520/FluentUI
@@ -97,7 +182,7 @@ https://github.com/Distrotech/qtwayland/tree/master/examples/qwindow-compositor
 - https://apps.kde.org/pt-br/kapptemplate/
 - https://github.com/madduci/moderncpp-project-template/tree/master
 
-##  4. <a name='QML'></a>QML
+##  5. <a name='QML'></a>QML
 
 https://develop.kde.org/docs/plasma/widget/plasma-qml-api/
 
