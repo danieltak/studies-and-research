@@ -240,3 +240,52 @@ Numbers:
 100
 String: [SOH]Hello Worl[NUL]d
 ```
+
+## Free memory vector of pointers
+
+```cpp
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+struct myStructure{             // Structure declaration
+  int myNum;         // Member (int variable)
+  string myString;   // Member (string variable)
+} ;       // Structure variable
+
+int main()
+{
+    std::vector<myStructure*> vStructure;
+
+    cout<<sizeof(myStructure) << " " << sizeof(vStructure) << endl;
+    
+    for(int i=0; i<10;i++)
+    {
+        myStructure* pStructure = new myStructure;
+        pStructure->myNum = i;
+        pStructure->myString = i + 39;
+        vStructure.push_back( pStructure );
+    }
+    myStructure*& pStructureCopy = vStructure[8];
+     cout << vStructure.size() << " " << pStructureCopy->myNum << " " << pStructureCopy->myString <<endl;
+    for(auto ptrObj : vStructure )
+    {
+        delete ptrObj;
+    }    
+    vStructure.clear();
+    vStructure = vector<myStructure*>(); 
+     
+     cout << vStructure.size() << " " << vStructure.capacity() << " " << (pStructureCopy == nullptr) 
+     << " " <<endl;
+    return 0;
+}
+```
