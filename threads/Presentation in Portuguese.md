@@ -1,10 +1,11 @@
 <!-- vscode-markdown-toc -->
 * 1. [The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software](#TheFreeLunchIsOver:AFundamentalTurnTowardConcurrencyinSoftware)
 	* 1.1. [Andy and Bill's law](#AndyandBillslaw)
-	* 1.2. [Clock Speed](#ClockSpeed)
-	* 1.3. [ 2 x 3GHz < 6 GHz?](#2x3GHz6GHz)
-	* 1.4. [O que isso significa para o software: A próxima revolução](#Oqueissosignificaparaosoftware:Aprximarevoluo)
-	* 1.5. [Conclusão](#Concluso)
+	* 1.2. [The Free Performance Lunch](#TheFreePerformanceLunch)
+	* 1.3. [Clock Speed](#ClockSpeed)
+	* 1.4. [ 2 x 3GHz < 6 GHz?](#2x3GHz6GHz)
+	* 1.5. [O que isso significa para o software: A próxima revolução](#Oqueissosignificaparaosoftware:Aprximarevoluo)
+	* 1.6. [Conclusão](#Concluso)
 * 2. [Introdução](#Introduo)
 	* 2.1. [Thread vs Process](#ThreadvsProcess)
 	* 2.2. [Concorrência vs Paralelismo](#ConcorrnciavsParalelismo)
@@ -59,7 +60,7 @@ A lei de Andy e Bill é uma afirmação de que o novo software sempre consumirá
 
 A frase é uma brincadeira com as estratégias de negócios do ex-CEO da Intel, Andy Grove, e do ex-CEO da Microsoft, Bill Gates
 
-###
+###  1.2. <a name='TheFreePerformanceLunch'></a>The Free Performance Lunch
 
 Não importa o quão rápido os processadores se tornem, o software sempre encontra novas maneiras de consumir a velocidade extra. Faça uma CPU dez vezes mais rápida e o software normalmente encontrará dez vezes mais coisas para fazer (ou, em alguns casos, sentir-se à vontade para fazê-lo com dez vezes menos eficiência). A maioria das classes de aplicativos tem desfrutado de ganhos de desempenho gratuitos e regulares por várias décadas, mesmo sem lançar novas versões ou fazer nada de especial, porque os fabricantes de CPU (principalmente) e os fabricantes de memória e disco (secundariamente) habilitaram de forma confiável sistemas cada vez mais novos e cada vez mais rápidos. A velocidade do clock não é a única medida de desempenho, ou mesmo necessariamente uma boa, mas é instrutiva: estamos acostumados a ver CPUs de 500 MHz darem lugar a CPUs de 1 GHz, dando lugar a CPUs de 2 GHz e assim por diante. Hoje estamos na faixa de 3 GHz em computadores convencionais.
 
@@ -71,13 +72,13 @@ Certo, no passado. Mas completamente errado no futuro próximo.
 
 A boa notícia é que os processadores continuarão a se tornar mais poderosos. A má notícia é que, pelo menos no curto prazo, o crescimento ocorrerá principalmente em direções que não aceitam a maioria dos aplicativos atuais em seu habitual passeio gratuito.
 
-###  1.2. <a name='ClockSpeed'></a>Clock Speed
+###  1.3. <a name='ClockSpeed'></a>Clock Speed
 
 Por volta do início de 2003, você notará uma preocupante mudança brusca na tendência anterior de velocidades de clock da CPU cada vez mais rápidas. Adicionei linhas para mostrar as tendências de limite na velocidade máxima do clock; em vez de continuar no caminho anterior, conforme indicado pela linha pontilhada fina, há um achatamento acentuado. Tem se tornado cada vez mais difícil explorar velocidades de clock mais altas devido a não apenas um, mas vários problemas físicos, principalmente o calor (muito grande e difícil de dissipar), o consumo de energia (muito alto) e problemas de vazamento de corrente.
 
 ![ClockSpeedEvo](http://www.gotw.ca/images/CPU.png)
 
-###  1.3. <a name='2x3GHz6GHz'></a> 2 x 3GHz < 6 GHz?
+###  1.4. <a name='2x3GHz6GHz'></a> 2 x 3GHz < 6 GHz?
 
 Portanto, uma CPU dual-core que combina dois núcleos de 3GHz oferece praticamente 6GHz de capacidade de processamento. Certo?
 
@@ -89,7 +90,7 @@ Em segundo lugar, a menos que os dois núcleos estejam executando processos dife
 
 Se você estiver executando um aplicativo de thread único, ele só poderá usar um núcleo. Deve haver um aumento de velocidade, pois o sistema operacional e o aplicativo podem ser executados em núcleos separados, mas, normalmente, o sistema operacional não vai utilizar a CPU ao máximo, de modo que um dos núcleos ficará ocioso na maior parte do tempo.
 
-###  1.4. <a name='Oqueissosignificaparaosoftware:Aprximarevoluo'></a>O que isso significa para o software: A próxima revolução
+###  1.5. <a name='Oqueissosignificaparaosoftware:Aprximarevoluo'></a>O que isso significa para o software: A próxima revolução
 
 Na década de 1990, aprendemos a entender os objetos. A revolução no desenvolvimento de software convencional, da programação estruturada para a programação orientada a objetos, foi a maior mudança desse tipo nos últimos 20 anos e, sem dúvida, nos últimos 30 anos. Houve outras mudanças, inclusive o renascimento mais recente (e genuinamente interessante) dos serviços da Web, mas nada que a maioria de nós tenha visto durante nossas carreiras foi uma mudança tão fundamental e de tão grande alcance na forma como escrevemos software quanto a revolução dos objetos.
 
@@ -102,7 +103,7 @@ Lembre-se de que as pessoas têm feito programação orientada a objetos pelo me
 
 Da mesma forma, temos programado de forma concorrente desde a idade das trevas, escrevendo corrotinas, monitores e outras coisas interessantes. E na última década, mais ou menos, temos visto cada vez mais programadores escrevendo sistemas concorrentes (multithread, multiprocessos). Mas uma verdadeira revolução marcada por uma grande virada em direção à concorrência demorou a se concretizar. Atualmente, a grande maioria dos aplicativos é de thread único, e por boas razões que resumirei na próxima seção.
 
-###  1.5. <a name='Concluso'></a>Conclusão
+###  1.6. <a name='Concluso'></a>Conclusão
 
 Caso ainda não tenha feito isso, agora é o momento de analisar com atenção o design do seu aplicativo, determinar quais operações são sensíveis à CPU no momento ou provavelmente se tornarão sensíveis em breve e identificar como esses locais podem se beneficiar da concorrência.
 
@@ -348,9 +349,9 @@ private:
 };
 ```
 
-In the above example, the `push()` and `pop()` methods of the class both happen while the calling thread constructs a lock on the mutex associated with the queue. This lock is best used as an RAII style object, where it’s only active under some scope of code. Once the program finishes that scope, the lock guard object is destroyed, allowing another thread to construct and acquire a lock on the mutex. This pattern continues to satisfy the condition only one thread can modify the queue at a time.
+No exemplo acima, os métodos `push()` e `pop()` da classe acontecem enquanto o thread de chamada constrói um bloqueio no mutex associado à fila. Esse bloqueio é melhor usado como um objeto de estilo RAII, onde está ativo apenas em algum escopo de código. Assim que o programa termina esse escopo, o objeto lock guard é destruído, permitindo que outro thread construa e adquira um bloqueio no mutex. Esse padrão continua a satisfazer a condição de que apenas um thread pode modificar a fila por vez.
 
-###  3.1. <a name='Mutexesarestillpotentiallydangerous'></a>Mutexes are still potentially dangerous
+###  3.1. <a name='Mutexesarestillpotentiallydangerous'></a>Mutexes ainda são potencialmente perigosos
 
 Embora pareçam muito legais e diretos, os mutexes ainda podem ser perigosos. Quando um thread adquire um bloqueio em um mutex, ele é responsável por liberar ou destruir esse bloqueio para que outros threads também possam acessar o escopo seguro do código. O que acontece se um thread nunca libera o bloqueio que adquiriu? Bem, algo muito ruim.
 
@@ -671,8 +672,6 @@ Observando atentamente e visualizando a execução do código, podemos ver que :
 An example to show how mutexes are used for thread synchronization
 
 ```cpp
-
-
 #include <pthread.h> 
 #include <stdio.h> 
 #include <stdlib.h> 

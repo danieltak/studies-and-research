@@ -5,6 +5,8 @@
 * 2. [Time ellapsed](#Timeellapsed)
 * 3. [Minimize and Maximize X11 Window](#MinimizeandMaximizeX11Window)
 * 4. [Convert Hex String to Unsigned Int and then convert to ASCII String](#ConvertHexStringtoUnsignedIntandthenconverttoASCIIString)
+* 5. [Free memory vector of pointers](#Freememoryvectorofpointers)
+* 6. [Size of Structure](#SizeofStructure)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -241,17 +243,9 @@ Numbers:
 String: [SOH]Hello Worl[NUL]d
 ```
 
-## Free memory vector of pointers
+##  5. <a name='Freememoryvectorofpointers'></a>Free memory vector of pointers
 
 ```cpp
-/******************************************************************************
-
-                              Online C++ Compiler.
-               Code, Compile, Run and Debug C++ program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 #include <iostream>
 #include <vector>
 
@@ -289,3 +283,150 @@ int main()
     return 0;
 }
 ```
+
+##  6. <a name='SizeofStructure'></a>Size of Structure
+
+https://stackoverflow.com/a/119128/7690982
+
+> Why does the `sizeof()` operator return a size larger for a structure than the total sizes of the structure's members?
+
+Example:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+struct tMyStructure{
+    unsigned short usVar;
+    uint32_t uiVar32;
+};
+
+int main()
+{
+    tMyStructure tTempStruct;
+    int iSizeUs = sizeof(tTempStruct.usVar);
+    int iSizeUi = sizeof(tTempStruct.uiVar32);
+    int iSizeStruct = sizeof(tTempStruct);
+    int iSum = iSizeUs + iSizeUi;
+    cout << "tTempStruct " << iSizeStruct
+         << " usVar " << iSizeUs
+         << " uiVar32 " << iSizeUi
+         << " Sum " << iSum << endl;
+
+    return 0;
+}
+```
+
+The result is: `tTempStruct 8 usVar 2 uiVar32 4 Sum 6`
+
+So the structure size is greater than (>) the sum of each member of the structure!
+
+This is because of padding added to satisfy alignment constraints. [Data structure alignment](https://en.wikipedia.org/wiki/Data_structure_alignment) impacts both performance and correctness of programs.
+
+Data structure alignment is the way data is arranged and accessed in computer memory. It consists of three separate but related issues: data alignment, data structure padding, and packing.
+
+Here's an example using typical settings for an x86 processor (all used 32 and 64 bit modes):
+
+```cpp
+struct X
+{
+    short s; /* 2 bytes */
+             /* 2 padding bytes */
+    int   i; /* 4 bytes */
+    char  c; /* 1 byte */
+             /* 3 padding bytes */
+};
+
+struct Y
+{
+    int   i; /* 4 bytes */
+    char  c; /* 1 byte */
+             /* 1 padding byte */
+    short s; /* 2 bytes */
+};
+
+struct Z
+{
+    int   i; /* 4 bytes */
+    short s; /* 2 bytes */
+    char  c; /* 1 byte */
+             /* 1 padding byte */
+};
+
+const int sizeX = sizeof(struct X); /* = 12 */
+const int sizeY = sizeof(struct Y); /* = 8 */
+const int sizeZ = sizeof(struct Z); /* = 8 */
+```
+
+One can minimize the size of structures by sorting members by alignment (sorting by size suffices for that in basic types) (like structure `Z` in the example above).
+
+On the following example, it will have the result `tTempStruct 12 usVar 2 usVar2 2 uiVar32 4 Sum 8`
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+struct tMyStructure{
+    unsigned short usVar;  /* 2 bytes */
+                           /* 2 padding bytes */
+    uint32_t uiVar32;      /* 4 bytes */
+    unsigned short usVar2; /* 2 bytes */
+                           /* 2 padding bytes */
+};
+
+int main()
+{
+    tMyStructure tTempStruct;
+    int iSizeUs = sizeof(tTempStruct.usVar);
+    int iSizeUs2  = sizeof(tTempStruct.usVar2);
+    int iSizeUi = sizeof(tTempStruct.uiVar32);
+    int iSizeStruct = sizeof(tTempStruct);
+    int iSum = iSizeUs + iSizeUi + iSizeUs2;
+    cout << "tTempStruct " << iSizeStruct
+         << " usVar " << iSizeUs
+         << " usVar2 " << iSizeUs2
+         << " uiVar32 " << iSizeUi
+         << " Sum " << iSum << endl;
+
+    return 0;
+}
+```
+
+The struct size is 12 bytes because of additional 4 padding bytes.
+
+By rearranging the struct order, we have the following example:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+struct tMyStructure{
+    unsigned short usVar;  /* 2 bytes */
+    unsigned short usVar2; /* 2 bytes */
+    uint32_t uiVar32;      /* 4 bytes */
+};
+
+int main()
+{
+    tMyStructure tTempStruct;
+    int iSizeUs = sizeof(tTempStruct.usVar);
+    int iSizeUs2  = sizeof(tTempStruct.usVar2);
+    int iSizeUi = sizeof(tTempStruct.uiVar32);
+    int iSizeStruct = sizeof(tTempStruct);
+    int iSum = iSizeUs + iSizeUi + iSizeUs2;
+    cout << "tTempStruct " << iSizeStruct
+         << " usVar " << iSizeUs
+         << " usVar2 " << iSizeUs2
+         << " uiVar32 " << iSizeUi
+         << " Sum " << iSum << endl;
+
+    return 0;
+}
+```
+
+The result is `tTempStruct 8 usVar 2 usVar2 2 uiVar32 4 Sum 8`.
+
+The example above proves that sorting the struct by size of data type will suffice for basic types.

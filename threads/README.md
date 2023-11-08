@@ -11,6 +11,8 @@ https://www.geeksforgeeks.org/difference-between-cache-coherence-and-memory-cons
 
 https://github.com/google/sanitizers
 
+https://stackoverflow.com/q/43019598/7690982
+
 ## Synchronization
 
 According to the [Mutex lock for Linux Thread article](https://www.geeksforgeeks.org/mutex-lock-for-linux-thread-synchronization/):
