@@ -430,3 +430,38 @@ int main()
 The result is `tTempStruct 8 usVar 2 usVar2 2 uiVar32 4 Sum 8`.
 
 The example above proves that sorting the struct by size of data type will suffice for basic types.
+
+https://stackoverflow.com/q/3318410/7690982
+
+One other way is to use `#pragma pack()` to indicate that the struct being packed should not have its members aligned.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+#pragma pack(1)
+struct tMyStructure{
+    unsigned short usVar;  /* 2 bytes */
+    uint32_t uiVar32;      /* 4 bytes */
+    unsigned short usVar2; /* 2 bytes */
+};
+
+int main()
+{
+    tMyStructure tTempStruct;
+    int iSizeUs = sizeof(tTempStruct.usVar);
+    int iSizeUs2  = sizeof(tTempStruct.usVar2);
+    int iSizeUi = sizeof(tTempStruct.uiVar32);
+    int iSizeStruct = sizeof(tTempStruct);
+    int iSum = iSizeUs + iSizeUi + iSizeUs2;
+    cout << "tTempStruct " << iSizeStruct
+         << " usVar " << iSizeUs
+         << " usVar2 " << iSizeUs2
+         << " uiVar32 " << iSizeUi
+         << " Sum " << iSum << endl;
+
+    return 0;
+}
+```
+
+The result is `tTempStruct 8 usVar 2 usVar2 2 uiVar32 4 Sum 8`.
