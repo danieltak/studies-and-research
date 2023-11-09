@@ -465,3 +465,7 @@ int main()
 ```
 
 The result is `tTempStruct 8 usVar 2 usVar2 2 uiVar32 4 Sum 8`.
+
+> IMPORTANT NOTE: Both the C and C++ standards state that structure alignment is implementation-defined. Therefore each compiler may choose to align data differently, resulting in different and incompatible data layouts. For this reason, when dealing with libraries that will be used by different compilers, it is important to understand how the compilers align data. Some compilers have command-line settings and/or special #pragma statements to change the structure alignment settings.
+> 
+> Most processors penalize you for unaligned memory access (as you mentioned), but you can't forget that many completely disallow it. Most MIPS chips, in particular, will throw an exception on an unaligned access. 
