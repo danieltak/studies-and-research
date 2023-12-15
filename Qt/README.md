@@ -189,3 +189,16 @@ QSize CFireListBoxDelegate::sizeHint(const QStyleOptionViewItem &option,
 https://develop.kde.org/docs/plasma/widget/plasma-qml-api/
 
 https://community.kde.org/Plasma/DeveloperGuide
+
+## HMI High Performance
+
+### Color Blindness
+
+https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40
+
+https://davidmathlogic.com/colorblind/#%23648FFF-%23785EF0-%23DC267F-%23FE6100-%23FFB000
+
+https://davidmathlogic.com/colorblind/#%23000000-%23E69F00-%2356B4E9-%23009E73-%23F0E442-%230072B2-%23D55E00-%23CC79A7
+
+https://www.hmicons.com/2019/08/01/high-performance-hmi-color-palettes/
+
