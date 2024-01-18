@@ -190,6 +190,31 @@ https://develop.kde.org/docs/plasma/widget/plasma-qml-api/
 
 https://community.kde.org/Plasma/DeveloperGuide
 
+https://github.com/cppqtdev/Tesla
+
+https://github.com/cppqtdev/Car-Dashboard-2
+
+https://github.com/cppqtdev/gauge
+
+https://github.com/MontyTheSoftwareEngineer/CoolQMLButton
+
+https://github.com/uwerat/qskinny
+
+
+https://github.com/Roniasoft/RoniaKit/tree/master
+
+Performace
+
+https://doc.qt.io/qt-6/qtquick-performance.html
+
+Best Practice
+
+https://doc.qt.io/qt-6/qtquick-bestpractices.html
+
+https://github.com/Furkanzmc/QML-Coding-Guide
+
+
+
 ## HMI High Performance
 
 ### Color Blindness

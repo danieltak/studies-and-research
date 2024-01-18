@@ -104,6 +104,19 @@ https://dev.to/bholmesdev/before-building-your-next-static-site-with-react-consi
 
 ### Astro
 
+React
+https://github.com/zeon-studio/astroplate
+
 https://www.accessible-astro.dev/
 
 https://github.com/onwidget/astrowind
+
+https://github.com/one-aalam/astro-ink
+
+https://github.com/danielcgilibert/blog-template
+
+https://github.com/hellotham/hello-astro
+
+https://github.com/codiume/orbit
+
+https://github.com/uidotdev/usehooks
