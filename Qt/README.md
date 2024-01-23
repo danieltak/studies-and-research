@@ -213,6 +213,10 @@ https://doc.qt.io/qt-6/qtquick-bestpractices.html
 
 https://github.com/Furkanzmc/QML-Coding-Guide
 
+Animations
+
+https://stackoverflow.com/questions/49113178/how-can-we-make-an-element-animate-with-glow-pulsating-effect-in-qml
+
 
 
 ## HMI High Performance
@@ -226,4 +230,12 @@ https://davidmathlogic.com/colorblind/#%23648FFF-%23785EF0-%23DC267F-%23FE6100-%
 https://davidmathlogic.com/colorblind/#%23000000-%23E69F00-%2356B4E9-%23009E73-%23F0E442-%230072B2-%23D55E00-%23CC79A7
 
 https://www.hmicons.com/2019/08/01/high-performance-hmi-color-palettes/
+
+## QML tips
+
+### Reset Code Model
+
+https://forum.qt.io/topic/92025/unknown-component-m300-for-custom-qml-class/3
+
+
 

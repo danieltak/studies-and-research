@@ -26,6 +26,20 @@ Garanta um exemplo MVC (Mínimo, Completo e Verificável), como um dummy test e 
 
 Pois se não consegue replicar o problema, dificilmente encontrará a solução, pois não encontrou o real problema e não poderá resolvê-lo
 
+## SO comments
+
+https://meta.stackoverflow.com/questions/284236/why-is-can-someone-help-me-not-an-actual-question
+
+https://pt.meta.stackoverflow.com/a/1481/75104
+
+https://pt.meta.stackoverflow.com/questions/707/coment%c3%a1rios-enlatados-para-situa%c3%a7%c3%b5es-comuns/1481#1481
+
+https://stackoverflow.com/help/how-to-ask
+
+https://pt.meta.stackoverflow.com/questions/5483/manual-de-como-n%c3%83o-fazer-perguntas
+
+
+
 ##  3. <a name='W.V.Quine'></a>W.V.Quine
 
 https://www.unicamp.br/unicamp/index.php/ju/noticias/2018/08/10/nova-logica-e-filosofia-de-wvquine-no-brasil
