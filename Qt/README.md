@@ -8,6 +8,15 @@
 * 3. [Word Wrapping](#WordWrapping)
 * 4. [Qt Projects](#QtProjects)
 * 5. [QML](#QML)
+* 6. [HMI High Performance](#HMIHighPerformance)
+	* 6.1. [Color Blindness](#ColorBlindness)
+* 7. [QML tips](#QMLtips)
+	* 7.1. [Reset Code Model](#ResetCodeModel)
+	* 7.2. [Templates](#Templates)
+* 8. [Icons](#Icons)
+	* 8.1. [Windows Fluent Icons](#WindowsFluentIcons)
+* 9. [QML Book](#QMLBook)
+* 10. [Time Picker](#TimePicker)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -219,9 +228,9 @@ https://stackoverflow.com/questions/49113178/how-can-we-make-an-element-animate-
 
 
 
-## HMI High Performance
+##  6. <a name='HMIHighPerformance'></a>HMI High Performance
 
-### Color Blindness
+###  6.1. <a name='ColorBlindness'></a>Color Blindness
 
 https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40
 
@@ -231,11 +240,29 @@ https://davidmathlogic.com/colorblind/#%23000000-%23E69F00-%2356B4E9-%23009E73-%
 
 https://www.hmicons.com/2019/08/01/high-performance-hmi-color-palettes/
 
-## QML tips
+##  7. <a name='QMLtips'></a>QML tips
 
-### Reset Code Model
+###  7.1. <a name='ResetCodeModel'></a>Reset Code Model
 
 https://forum.qt.io/topic/92025/unknown-component-m300-for-custom-qml-class/3
 
+###  7.2. <a name='Templates'></a>Templates
+
+https://doc.qt.io/qt-6/qtquicktemplates2-index.html
+
+##  8. <a name='Icons'></a>Icons
+
+###  8.1. <a name='WindowsFluentIcons'></a>Windows Fluent Icons
+
+https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font
+
+https://learn.microsoft.com/en-us/windows/apps/design/downloads/#fonts
 
 
+##  9. <a name='QMLBook'></a>QML Book
+
+https://www.qt.io/product/qt6/qml-book
+
+##  10. <a name='TimePicker'></a>Time Picker
+
+https://github.com/ekke/biz_data_x/blob/master/qml/popups/TimePicker.qml
