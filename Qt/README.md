@@ -266,3 +266,7 @@ https://www.qt.io/product/qt6/qml-book
 ##  10. <a name='TimePicker'></a>Time Picker
 
 https://github.com/ekke/biz_data_x/blob/master/qml/popups/TimePicker.qml
+
+https://github.com/ekke/c2gQtCon_x
+
+https://code.qt.io/cgit/qt/qtdeclarative.git/tree/tests/auto/quick/doc/how-tos/how-to-qml/time-picker?h=6.6
