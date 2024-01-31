@@ -270,3 +270,13 @@ https://github.com/ekke/biz_data_x/blob/master/qml/popups/TimePicker.qml
 https://github.com/ekke/c2gQtCon_x
 
 https://code.qt.io/cgit/qt/qtdeclarative.git/tree/tests/auto/quick/doc/how-tos/how-to-qml/time-picker?h=6.6
+
+## Singleton
+
+https://forum.qt.io/topic/139592/singleton-and-qml-in-qt-6-3/9
+
+On Qt6 you don't edit the qmldir anymore (https://www.qt.io/blog/introduction-to-the-qml-cmake-api), use cmake instead!
+
+Create a module with `qt_add_qml_module` and set the property:
+
+`set_source_files_properties(MyQMLFile.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)`
