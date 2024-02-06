@@ -17,6 +17,9 @@
 	* 8.1. [Windows Fluent Icons](#WindowsFluentIcons)
 * 9. [QML Book](#QMLBook)
 * 10. [Time Picker](#TimePicker)
+* 11. [Singleton](#Singleton)
+* 12. [QML ListModel](#QMLListModel)
+* 13. [Render Type performance](#RenderTypeperformance)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -271,7 +274,7 @@ https://github.com/ekke/c2gQtCon_x
 
 https://code.qt.io/cgit/qt/qtdeclarative.git/tree/tests/auto/quick/doc/how-tos/how-to-qml/time-picker?h=6.6
 
-## Singleton
+##  11. <a name='Singleton'></a>Singleton
 
 https://forum.qt.io/topic/139592/singleton-and-qml-in-qt-6-3/9
 
@@ -280,3 +283,19 @@ On Qt6 you don't edit the qmldir anymore (https://www.qt.io/blog/introduction-to
 Create a module with `qt_add_qml_module` and set the property:
 
 `set_source_files_properties(MyQMLFile.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)`
+
+##  12. <a name='QMLListModel'></a>QML ListModel
+
+Drawback is that you can only use constants and simple data types and has only simples loops.
+
+So you should create your own C++ model or javascript code.
+
+##  13. <a name='RenderTypeperformance'></a>Render Type performance
+
+On windows the Qt render type was ok, but on Wayland there were issues.
+
+Changed to native rendering with https://doc.qt.io/qt-6/qquickwindow.html#setTextRenderType
+
+Use the env var QSG_INFO=1 to display some logging information about the scene graph
+
+https://scythe-studio.com/de/blog/improving-performance-and-optimizing-qml-apps-part-2
