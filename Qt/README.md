@@ -299,3 +299,82 @@ Changed to native rendering with https://doc.qt.io/qt-6/qquickwindow.html#setTex
 Use the env var QSG_INFO=1 to display some logging information about the scene graph
 
 https://scythe-studio.com/de/blog/improving-performance-and-optimizing-qml-apps-part-2
+
+## Qt Logging
+
+https://stackoverflow.com/a/4954188/7690982
+
+```cpp
+void logMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QString message = qFormatLogMessage(type, context, msg);
+
+    QString fileName = QString( "log" + QDate::currentDate().toString("yyyyMMdd") + ".txt" );
+
+    QFile outputFile( fileName );
+    if ( outputFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text) ){
+        QTextStream textStream( &outputFile );
+        QString printMessage;
+
+        switch (type) {
+        case QtDebugMsg:
+            printMessage = QString("Debug %1: %2 (%3:%4, %5)")
+                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
+                                     message,
+                                     QString( context.file ),
+                                     QString::number( context.line ),
+                                     QString( context.function ) );
+            break;
+        case QtInfoMsg:
+            printMessage = QString("Info %1: %2 (%3:%4, %5)")
+                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
+                                    message,
+                                    QString( context.file ),
+                                    QString::number( context.line ),
+                                    QString( context.function ) );
+            break;
+        case QtWarningMsg:
+            printMessage = QString("Warning %1: %2 (%3:%4, %5)")
+                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
+                                    message,
+                                    QString( context.file ),
+                                    QString::number( context.line ),
+                                    QString( context.function ) );
+            break;
+        case QtCriticalMsg:
+            printMessage = QString("Critical %1: %2 (%3:%4, %5)")
+                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
+                                    message,
+                                    QString( context.file ),
+                                    QString::number( context.line ),
+                                    QString( context.function ) );
+            break;
+        case QtFatalMsg:
+            printMessage = QString("Fatal %1: %2 (%3:%4, %5)")
+                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
+                                    message,
+                                    QString( context.file ),
+                                    QString::number( context.line ),
+                                    QString( context.function ) );
+            abort();
+        }
+
+        textStream << printMessage << Qt::endl;
+
+        outputFile.close();
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    qInstallMessageHandler( logMessageOutput );
+
+    qDebug() << "Debug text";
+
+    qInfo() << "Info text";
+
+    qWarning() << "Warning text";
+
+    qCritical() << "Critical text";
+}
+```
