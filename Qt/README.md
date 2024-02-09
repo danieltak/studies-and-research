@@ -308,60 +308,31 @@ https://stackoverflow.com/a/4954188/7690982
 void logMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QString message = qFormatLogMessage(type, context, msg);
-
     QString fileName = QString( "log" + QDate::currentDate().toString("yyyyMMdd") + ".txt" );
+
+    QHash<QtMsgType, QString> msgLevelHash({{QtDebugMsg, "Debug"}, {QtInfoMsg, "Info"}, {QtWarningMsg, "Warning"}, {QtCriticalMsg, "Critical"}, {QtFatalMsg, "Fatal"}});
+
 
     QFile outputFile( fileName );
     if ( outputFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text) ){
         QTextStream textStream( &outputFile );
         QString printMessage;
+        QString logLevelName = msgLevelHash[type];
 
-        switch (type) {
-        case QtDebugMsg:
-            printMessage = QString("Debug %1: %2 (%3:%4, %5)")
-                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
-                                     message,
-                                     QString( context.file ),
-                                     QString::number( context.line ),
-                                     QString( context.function ) );
-            break;
-        case QtInfoMsg:
-            printMessage = QString("Info %1: %2 (%3:%4, %5)")
-                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
-                                    message,
-                                    QString( context.file ),
-                                    QString::number( context.line ),
-                                    QString( context.function ) );
-            break;
-        case QtWarningMsg:
-            printMessage = QString("Warning %1: %2 (%3:%4, %5)")
-                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
-                                    message,
-                                    QString( context.file ),
-                                    QString::number( context.line ),
-                                    QString( context.function ) );
-            break;
-        case QtCriticalMsg:
-            printMessage = QString("Critical %1: %2 (%3:%4, %5)")
-                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
-                                    message,
-                                    QString( context.file ),
-                                    QString::number( context.line ),
-                                    QString( context.function ) );
-            break;
-        case QtFatalMsg:
-            printMessage = QString("Fatal %1: %2 (%3:%4, %5)")
-                               .arg( QDateTime::currentDateTime().toString("hh:mm:ss"),
-                                    message,
-                                    QString( context.file ),
-                                    QString::number( context.line ),
-                                    QString( context.function ) );
-            abort();
-        }
+        printMessage = QString("%1 %2: %3 (%4:%5, %6)")
+                           .arg( logLevelName,
+                                QDateTime::currentDateTime().toString("hh:mm:ss"),
+                                message,
+                                QString( context.file ),
+                                QString::number( context.line ),
+                                QString( context.function ) );
 
         textStream << printMessage << Qt::endl;
-
+        std::cout << printMessage.toStdString() << std::endl;
         outputFile.close();
+
+        if( type == QtFatalMsg )
+            abort();
     }
 }
 
