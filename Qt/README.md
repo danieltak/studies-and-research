@@ -300,6 +300,14 @@ Use the env var QSG_INFO=1 to display some logging information about the scene g
 
 https://scythe-studio.com/de/blog/improving-performance-and-optimizing-qml-apps-part-2
 
+### Performance General
+
+https://scythe-studio.com/en/blog/improving-performance-and-optimizing-qml-apps-part-1
+
+https://scythe-studio.com/en/blog/improving-performance-and-optimizing-qml-apps-part-2
+
+https://stackoverflow.com/a/47315977/7690982
+
 ## Qt Logging
 
 https://stackoverflow.com/a/4954188/7690982

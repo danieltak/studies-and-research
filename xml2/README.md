@@ -112,7 +112,7 @@ Use the functions providaded by the library, such as:
 
 ##  4. <a name='xmlParservsxmlReader'></a>xmlParser vs xmlReader
 
-Although the [official tutorial](https://gnome.pages.gitlab.gnome.org/libxml2/tutorial/index.html) suggests the use of the function xmlParseFile(), it isn't recommended, use xmlReader instead. It is more powerful, [answers on Stack Overflow](https://stackoverflow.com/questions/19315206/xmlparsefile-vs-xmlreadfile-libxml2) also suggest the use of the function.
+Although the [official tutorial](https://gnome.pages.gitlab.gnome.org/libxml2/tutorial/index.html) suggests the use of the function `xmlParseFile()`, it isn't recommended, use `xmlReader` instead. It is more powerful, [answers on Stack Overflow](https://stackoverflow.com/questions/19315206/xmlparsefile-vs-xmlreadfile-libxml2) also suggest the use of the function.
 
 The [official documentation](https://gnome.pages.gitlab.gnome.org/libxml2/devhelp/libxml2-parser.html#xmlParseFile) states that xmlParseFile is deprecated and recommends the use of [xmlReadFile](https://gnome.pages.gitlab.gnome.org/libxml2/devhelp/libxml2-parser.html#xmlReadFile) instead.
 
