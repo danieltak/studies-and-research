@@ -11,6 +11,7 @@
 * 6. [Filesystem Hierarchy Standard (FHS)](#FilesystemHierarchyStandardFHS)
 * 7. [Time](#Time)
 * 8. [Send Signal](#SendSignal)
+* 9. [Ping](#Ping)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -317,3 +318,9 @@ if( iStatus != 0 )
     std::cout << "sigqueue Error: " << errno << std::endl;
 }
 ```
+
+##  9. <a name='Ping'></a>Ping
+
+http://www.ping127001.com/pingpage.htm
+
+https://gist.github.com/klknn/50c75a9779448ed5004398f05dc1b25a
