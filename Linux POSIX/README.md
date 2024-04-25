@@ -83,6 +83,9 @@ https://natanyellin.com/posts/buggy-netlink-process-connectors/
 
 One example of use is a connector of `proc_event`, filename `cn_proc.h`.
 
+https://medium.com/thg-tech-blog/on-linux-netlink-d7af1987f89d
+
+
 ##  4. <a name='LTTng'></a>LTTng
 
 https://imasters.com.br/devsecops/introducao-a-ferramenta-lttng-monitorando-eventos-em-linux
